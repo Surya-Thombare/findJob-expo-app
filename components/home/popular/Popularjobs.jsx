@@ -7,15 +7,26 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { useRouter } from "expo-router";
+// const rapidApiKey = NODE_ENV['RAPID_API_KEY'];
 
+
+
+
+import useFetch from "../../../hook/useFetch";
 import styles from "./popularjobs.style";
 import { COLORS, SIZES } from "../../../constants";
 import PopularJobCard from "../../common//cards/popular/PopularJobCard";
 
 const Popularjobs = () => {
+
   const router = new useRouter();
-  const isLoading = false;
-  const error = false;
+
+  const {isLoading, data, error} = useFetch(
+    'search', {
+      query: 'React develper',
+      num_pages: 1
+    }
+  )
 
   return (
     <View style={styles.container}>
